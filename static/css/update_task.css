@@ -1,0 +1,251 @@
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  max-height: 800px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  margin: 2rem auto;
+  margin-top: -1px;
+}
+
+form h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #333;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+form label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+form input,
+form textarea {
+  font-size: 1rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #f5f5f5;
+  color: #333;
+  width: 100%;
+  resize: none;
+}
+
+form input:hover,
+form textarea:hover {
+  border-color: #f90;
+}
+
+
+
+form .button-group {
+  display: flex;
+  margin-top: -10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  flex-direction: row;
+  margin-top: -15px;
+  cursor: pointer;
+
+}
+
+form .button-group button[type="submit"],
+form .button-group button[type="button"],
+form .button-group a {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  max-width: 200px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+form .button-group button[type="submit"]:hover,
+form .button-group button[type="button"]:hover,
+form .button-group a:hover {
+  background-color: #f90;
+}
+
+
+
+
+/* Checkbox input style */
+.checkbox-input {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+.checkbox-input label {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.checkbox-container {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.checkbox-container label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 1rem;
+  height: 1rem;
+  background-color: #000;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox-container input[type="checkbox"]:focus + label {
+  outline: 2px solid #f90;
+}
+
+.checkbox-container input[type="checkbox"]:focus + label::before {
+  box-shadow: 0 0 0 2px #f90;
+}
+
+.checkbox-container label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: transparent;
+  border: 2px solid #000;
+  border-radius: 0.25rem;
+}
+
+.checkbox-container input[type="checkbox"]:checked + label::after {
+  background-color: #000;
+}
+
+
+
+
+
+/* input choose a file --button */
+
+form .image-input {
+  display: flex;
+  margin-top: -10px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+form .image-input .image-preview {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+form .image-input .image-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+form .image-input label {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+form .image-input input[type="file"] {
+  display: none;
+}
+
+form .image-input label:hover {
+  background-color: #f90;
+}
+
+
+
+
+
+/* Image styles */
+form .image-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: -10px;
+  margin-bottom: 1rem;
+}
+
+form .image-input label {
+  margin-bottom: 0.5rem;
+}
+
+form .image-input img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-bottom: 0.5rem;
+}

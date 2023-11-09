@@ -1,0 +1,39 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2C2F33;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li + li {
+    margin-left: 1rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  a:hover {
+    color: #F9A826;
+  }
+  
+  .greeting {
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
