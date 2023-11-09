@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/dashboard1.css' %}">
+</head>
+<body>
+   {% include 'tasks/nav.html' %} 
+    <h1>ALL TASKS</h1>
+  
+    {% block content %}
+    {% if tasks %}
+        <ul>
+            {% for task in tasks %}
+                <div class="task" data-task-id="{{ task.id }}">
+                    <h3>
+                        <div class="edit-title-container" hidden>
+                            <input type="text" class="edit-title" value="{{ task.title }}">
+                        </div>
+                        <span class="title">{{ task.title }}</span>
+                    </h3>
+                    <p>
+                        <div class="edit-description-container" hidden>
+                            <textarea class="edit-description">{{ task.description }}</textarea>
+                        </div>
+                        <span class="description">{{ task.description }}</span>
+                    </p>
+                    {% if task.image %}
+                        <img src="{{ task.image.url }}" alt="{{ task.title }}">
+                    {% endif %}
+                    <p>Created: {{ task.created_at }}</p>
+                    {% if task.updated_at and task.updated_at > task.created_at %}
+                        <p>Updated: {{ task.updated_at }}</p>
+                    {% endif %}
+                    <input type="checkbox" id="completed-{{ task.id }}" name="completed" {% if task.completed %}checked{% endif %} data-task-id="{{ task.id }}">
+                    <label for="completed-{{ task.id }}">Completed</label>
+                    <button class="update-button" data-task-id="{{ task.id }}">Update</button>
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="empty-message" >Welcome to the TaskManager app! We noticed you have not created a task yet, hit Create Task to start!</p>
+    {% endif %}
+
+{% endblock %}
+
+
+
+<!-- adding JS for the update option -->
+    <script>
+    $(document).ready(function() {
+        $('.update-button').click(function() {
+            var taskId = $(this).data('task-id');
+            window.location.href = '/tasks/' + taskId + '/update/';
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>HomePage</title>
+</head>
+<body>
+
+    <h1>Welcome to the Task Manager</h1>
+
+    <p>Thank you for using our service. To start managing your tasks, please log in or create an account:</p>
+
+    <div>
+        <a href="{% url 'tasks:login' %}">Log in</a>
+        <a href="{% url 'tasks:register' %}">Create an account</a>
+    </div>
+
+    <footer><p>&copy; 2023 Task Manager. All rights reserved.</p></footer>
+    
+</body>
+</html>

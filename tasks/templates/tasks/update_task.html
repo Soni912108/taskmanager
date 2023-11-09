@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/update_task.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Update Task</title>
+</head>
+<body>
+  {% include 'tasks/nav.html' %}
+
+  {% block content %}
+  
+
+    <form method="POST" enctype="multipart/form-data">
+      <h3>Update your Task</h3>
+      {% csrf_token %}
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="{{ task.title }}">
+      </div>
+
+      <div>
+        <label for="description">Description:</label>
+        <textarea name="description">{{ task.description }}</textarea>
+      </div>
+
+      <div class="checkbox-input">
+        <label for="completed">Completed:</label>
+        <div class="checkbox-container">
+          <input type="checkbox" name="completed" {% if task.completed %}checked{% endif %} value="true" id="completed-checkbox">
+          <label for="completed-checkbox"></label>
+        </div>
+      </div>
+      
+
+      <div class="image-input">
+        {% if task.image %}
+          <div class="image-preview">
+            <img src="{{ task.image.url }}" alt="{{ task.title }}">
+          </div>
+        {% endif %}
+        <label for="image">Choose File</label>
+        <input type="file" name="image" id="image">
+      </div>
+      
+      
+
+      <div class="button-group">
+          <button type="submit">Update</button>
+          <button type="button" id="delete-btn">Delete</button>
+          <a href="{% url 'tasks:dashboard' task.user.id %}">Cancel</a>
+        </div>
+
+      </div>
+      
+    </form>
+  {% endblock %}
+
+
+
+  <script>
+    $(document).ready(function() {
+      $('#delete-btn').click(function() {
+        if (confirm('Are you sure you want to delete this task?')) {
+          $.ajax({
+            url: '{% url "tasks:update_task" task.id %}',
+            method: 'DELETE',
+            headers: {
+              'X-CSRFToken': '{{ csrf_token }}'
+            },
+            success: function() {
+              window.location.href = '{% url "tasks:dashboard" task.user.id %}';
+            },
+            error: function() {
+              alert('Failed to delete task.');
+            }
+          });
+        }
+      });
+    });
+  </script>
+  
+
+
+  <script>
+    // Replace the "No file chosen" text with an empty string
+    document.querySelector('input[type="file"]').addEventListener('change', function() {
+      this.labels[0].textContent = '';
+    });
+  </script>
+  
+</body>
+</html>
+
+

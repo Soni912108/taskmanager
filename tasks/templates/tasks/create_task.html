@@ -1,0 +1,41 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/create_task.css' %}">
+  <title>Create Task</title>
+</head>
+<body>
+  {% include 'tasks/nav.html' %}
+
+  {% block content %}
+    <form method="POST" enctype="multipart/form-data">
+      <h3>Create a new Task</h3>
+      {% csrf_token %}
+      <div class="lable-div">
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+      </div>
+      <div class="desciption">
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+      </div>
+      <div class="image-input">
+        <label for="{{ form.image.id_for_label }}">Image:</label>
+        {{ form.image }}
+      </div>
+     
+      <div><button type="submit">Create Task</button></div>
+      <div>
+   
+      </div>
+    
+    </form>
+  {% endblock %}
+</body>
+</html>

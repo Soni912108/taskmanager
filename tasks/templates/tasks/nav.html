@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/nav1.css' %}">
+</head>
+<body>
+
+  {% block content %}
+<nav>
+  <ul>
+    {% if request.path != '/create-task/' %}
+    <li><a href="{% url 'tasks:create_task' %}">Create Task</a></li>
+    {% endif %}
+    <li><a href="{% url 'tasks:logout' %}">Logout</a></li>
+  </ul>
+  {% if user.is_authenticated %}
+    <p class="greeting">Hello, {{ user.username }}!</p>
+  {% endif %}
+</nav>
+
+{% endblock %}
+
+
+</body>
+</html>
